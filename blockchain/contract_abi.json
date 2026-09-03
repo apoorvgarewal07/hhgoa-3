@@ -1,0 +1,194 @@
+[
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "recordId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "faceEncoding",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "socialMediaURL",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "timestamp",
+        "type": "uint256"
+      }
+    ],
+    "name": "FaceDataUploaded",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "records",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "faceEncoding",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "imageHash",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "postHash",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "string",
+        "name": "socialMediaURL",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "timestamp",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "uploadedBy",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "recordCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "_faceEncoding",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "_imageHash",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "_postHash",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "string",
+        "name": "_socialMediaURL",
+        "type": "string"
+      }
+    ],
+    "name": "uploadFaceData",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_recordId",
+        "type": "uint256"
+      }
+    ],
+    "name": "verifyFaceData",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_recordId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getRecord",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "bytes32",
+            "name": "faceEncoding",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "imageHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "postHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "string",
+            "name": "socialMediaURL",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "timestamp",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "uploadedBy",
+            "type": "address"
+          }
+        ],
+        "internalType": "struct FaceDataRegistry.FaceRecord",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]
