@@ -1,0 +1,2647 @@
+/* ==========================================================================
+   FACE·ID × CHAIN // SKEUOMORPHIC BAUHAUS ANALOG DOSSIER
+   Theme: Bauhaus Functional Geometry × Tactile Skeuomorphism × Cold War Dossier
+   Art Direction: HH Goa 2026 - Task 3 Forensic System
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   0. DESIGN SYSTEM TOKENS & MATERIAL SURFACES
+   -------------------------------------------------------------------------- */
+:root {
+  /* Laboratory Graphite Desk Surface */
+  --bg-bench: #181A1D;
+  --bg-bench-subtle: #22252A;
+  --border-bench: #2D3139;
+
+  /* Aged Manila Dossier Folder & Cardstock */
+  --manila-outer: #D6C7B2;
+  --manila-folder: #E5DAC7;
+  --manila-sheet: #FAF6ED;
+  --manila-dark: #CBB99F;
+  --manila-border: #BBA78B;
+  --manila-shadow: rgba(14, 15, 18, 0.45);
+
+  /* Bauhaus Primary Pigment Accents */
+  --bauhaus-blue: #1D3557;
+  --bauhaus-crimson: #BA181B;
+  --bauhaus-ochre: #E09F3E;
+  --bauhaus-noir: #111111;
+
+  /* Forensic Ink & Stamps */
+  --ink-primary: #181614;
+  --ink-secondary: #3D3833;
+  --ink-muted: #6B6359;
+  --stamp-red: #BA181B;
+  --stamp-red-trans: rgba(186, 24, 27, 0.88);
+  --stamp-blue: #1D3557;
+
+  /* CRT Phosphor & Electronic Telemetry */
+  --crt-phosphor: #22C55E;
+  --crt-amber: #F59E0B;
+  --crt-bg: #07100B;
+  --crt-graticule: rgba(34, 197, 94, 0.18);
+
+  /* Typography Scales */
+  --font-display: 'Space Grotesk', 'Syne', sans-serif;
+  --font-dossier: 'Courier Prime', 'Special Elite', monospace;
+  --font-mono: 'DM Mono', monospace;
+
+  /* Skeuomorphic Hard Shadows & Bevels */
+  --shadow-paper: 0 12px 28px -6px rgba(0, 0, 0, 0.55), 0 4px 10px rgba(0, 0, 0, 0.25);
+  --shadow-beveled: inset 1.5px 1.5px 0 rgba(255, 255, 255, 0.75), inset -1.5px -1.5px 0 rgba(0, 0, 0, 0.35);
+  --shadow-inset-box: inset 2px 2px 5px rgba(0, 0, 0, 0.35);
+  --rule-bauhaus: 2px solid var(--bauhaus-noir);
+}
+
+/* --------------------------------------------------------------------------
+   1. GLOBAL RESET & BASE STYLING
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 15px;
+  background-color: var(--bg-bench);
+  color: var(--ink-primary);
+  font-family: var(--font-dossier);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body.dossier-workstation {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-bench);
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(29, 53, 87, 0.15) 0%, transparent 70%),
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 32px 32px, 32px 32px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --------------------------------------------------------------------------
+   2. MASTHEAD / CONTROL DECK (WORKSTATION HEADER)
+   -------------------------------------------------------------------------- */
+.control-deck-masthead {
+  background: linear-gradient(180deg, #2A2E35 0%, #1F2227 100%);
+  border-bottom: 3px solid #111316;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.deck-frame {
+  max-width: 1520px;
+  margin: 0 auto;
+  padding: 10px 24px;
+  display: grid;
+  grid-template-columns: 1.15fr 0.9fr 1.35fr;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Left: Dossier Classification & Case Tag */
+.deck-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dossier-classification-plate {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.stamp-classified {
+  display: inline-block;
+  font-family: var(--font-dossier);
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #FFF;
+  background: var(--bauhaus-crimson);
+  padding: 2px 7px;
+  letter-spacing: 0.12em;
+  border: 1px solid #7E0D0F;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+  transform: rotate(-1.5deg);
+}
+
+.case-dossier-tag {
+  font-family: var(--font-display);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #E2E8F0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dossier-prefix {
+  color: var(--bauhaus-ochre);
+}
+
+.dossier-pipe {
+  color: #64748B;
+}
+
+.dossier-sub {
+  color: #F1F5F9;
+}
+
+.dossier-net {
+  color: #93C5FD;
+}
+
+.dossier-stamped-id {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-dossier);
+  font-size: 0.76rem;
+  color: #94A3B8;
+}
+
+.id-val {
+  font-weight: 700;
+  color: #F8FAFC;
+  background: #111418;
+  padding: 1px 8px;
+  border: 1px solid #334155;
+  box-shadow: inset 1px 1px 2px rgba(0,0,0,0.8);
+}
+
+.id-barcode {
+  font-size: 0.85rem;
+  letter-spacing: -0.05em;
+  color: #64748B;
+  opacity: 0.75;
+}
+
+/* Center: Bakelite Toggle Switch with Brass Bezel & Cathode Lamp */
+.deck-center {
+  display: flex;
+  justify-content: center;
+}
+
+.power-assembly {
+  background: #15181C;
+  border: 2px solid #383E48;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.8), 0 2px 6px rgba(0,0,0,0.5);
+  padding: 6px 14px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.power-label-plate {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.plate-screw {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #8892B0;
+  box-shadow: inset 1px 1px 1px #000;
+}
+
+.plate-text {
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #94A3B8;
+  text-transform: uppercase;
+}
+
+.switch-lamp-group {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* Brass Bezel Bakelite Toggle */
+.bakelite-toggle-wrapper {
+  cursor: pointer;
+  display: inline-block;
+}
+
+.brass-bezel {
+  width: 56px;
+  height: 28px;
+  border-radius: 14px;
+  padding: 3px;
+  background: radial-gradient(circle at 35% 35%, #FDE047 0%, #CA8A04 60%, #713F12 100%);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+  border: 1px solid #451A03;
+}
+
+.toggle-track {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: #0B0D0F;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.9);
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.toggle-knob {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #475569 0%, #1E293B 70%, #0F172A 100%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), inset 1px 1px 1px rgba(255, 255, 255, 0.4);
+  position: absolute;
+  top: 0;
+  left: 28px;
+  transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.knob-grooves {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #334155;
+  box-shadow: inset 1px 1px 1px #000;
+}
+
+input#toggle-power:not(:checked) + .brass-bezel .toggle-knob {
+  left: 0;
+  background: linear-gradient(135deg, #334155 0%, #0F172A 100%);
+}
+
+/* Cathode Indicator Lamp */
+.cathode-lamp-unit {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cathode-lens {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #475569, #1E293B);
+  border: 2px solid #0F172A;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.8), inset 1px 1px 2px rgba(255,255,255,0.4);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.cathode-lens.active {
+  background: radial-gradient(circle at 35% 35%, #86EFAC 0%, #22C55E 50%, #14532D 100%);
+  box-shadow: 0 0 12px rgba(34, 197, 94, 0.9), inset 1px 1px 2px rgba(255,255,255,0.8);
+}
+
+.cathode-label {
+  font-family: var(--font-dossier);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #22C55E;
+}
+
+/* Right: Chunky Heavy Push Button */
+.deck-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.action-trigger-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  max-width: 440px;
+}
+
+.btn-chunky-push {
+  width: 100%;
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0;
+  font-family: inherit;
+}
+
+.btn-beveled-plate {
+  background: linear-gradient(180deg, #94A3B8 0%, #334155 6%, #1E293B 100%);
+  border: 2px solid #0F172A;
+  border-radius: 4px;
+  padding: 3px 3px 6px 3px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.65), 0 2px 4px rgba(0, 0, 0, 0.4);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+.btn-top-surface {
+  background: linear-gradient(180deg, #DC2626 0%, #B91C1C 60%, #7F1D1D 100%);
+  border: 1px solid #EF4444;
+  border-radius: 2px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #FFF;
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 1px 2px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.btn-chunky-push:not(:disabled):hover .btn-beveled-plate {
+  background: linear-gradient(180deg, #CBD5E1 0%, #475569 6%, #1E293B 100%);
+}
+
+.btn-chunky-push:not(:disabled):active .btn-beveled-plate {
+  transform: translateY(3px);
+  padding-bottom: 3px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+.btn-chunky-push:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.btn-chunky-push:disabled .btn-top-surface {
+  background: linear-gradient(180deg, #475569 0%, #334155 100%);
+  border-color: #64748B;
+  color: #94A3B8;
+  text-shadow: none;
+}
+
+/* Jeweled Pilot Lamp on Trigger */
+.trigger-jeweled-lamp {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1.5px solid #181614;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.trigger-jeweled-lamp.lamp-off {
+  background: radial-gradient(circle at 35% 35%, #94A3B8, #475569);
+  box-shadow: inset 1px 1px 1px rgba(0,0,0,0.5);
+}
+
+.trigger-jeweled-lamp.lamp-amber {
+  background: radial-gradient(circle at 35% 35%, #FEF08A, #F59E0B);
+  box-shadow: 0 0 10px #F59E0B, inset 1px 1px 1px #FFF;
+}
+
+.trigger-jeweled-lamp.lamp-green {
+  background: radial-gradient(circle at 35% 35%, #86EFAC, #22C55E);
+  box-shadow: 0 0 10px #22C55E, inset 1px 1px 1px #FFF;
+}
+
+.pipeline-progress-housing {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.progress-segmented-track {
+  height: 7px;
+  background: #0B0D0F;
+  border: 1px solid #334155;
+  border-radius: 1px;
+  overflow: hidden;
+  position: relative;
+  background-image: repeating-linear-gradient(90deg, transparent 0, transparent 8px, rgba(0,0,0,0.6) 8px, rgba(0,0,0,0.6) 10px);
+}
+
+.progress-segment-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #F59E0B, #22C55E);
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.7);
+  transition: width 0.3s ease;
+}
+
+.progress-readout-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-dossier);
+  font-size: 0.65rem;
+  color: #94A3B8;
+  letter-spacing: 0.05em;
+}
+
+.progress-pct {
+  color: var(--crt-phosphor);
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   3. WORKBENCH DESK SURFACE & MANILA DOSSIER BINDER
+   -------------------------------------------------------------------------- */
+.workbench-bench-surface {
+  flex: 1;
+  padding: 32px 24px 48px 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.manila-dossier-folder {
+  width: 100%;
+  max-width: 1440px;
+  background: var(--manila-folder);
+  border: 3px solid var(--manila-border);
+  border-radius: 4px;
+  box-shadow: var(--shadow-paper);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Skeuomorphic Top Hardware: Steel Binder Clamp & Brass Rivets */
+.dossier-binder-hardware {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  margin-top: -14px;
+  z-index: 25;
+  pointer-events: none;
+}
+
+.brass-grommet {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #FFF0B3 0%, #D4A738 45%, #7A550C 90%, #3D2903 100%);
+  border: 1.5px solid #2B1D03;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.45), inset 0 0 2px #FFF;
+  position: relative;
+}
+
+.brass-grommet::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #171103;
+  box-shadow: inset 1px 1px 1px #000;
+}
+
+.steel-binder-clamp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.clamp-body {
+  width: 80px;
+  height: 28px;
+  background: linear-gradient(180deg, #64748B 0%, #1E293B 35%, #334155 70%, #0F172A 100%);
+  border: 1px solid #020617;
+  border-radius: 2px 2px 0 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clamp-wire-loop {
+  position: absolute;
+  top: -16px;
+  left: 20px;
+  width: 40px;
+  height: 24px;
+  border: 3px solid #E2E8F0;
+  border-bottom: none;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.clamp-stamp {
+  font-family: var(--font-display);
+  font-size: 0.55rem;
+  font-weight: 800;
+  color: #94A3B8;
+  letter-spacing: 0.1em;
+}
+
+/* Manila Folder Tab Strip */
+.dossier-tab-strip {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  padding: 12px 28px 0 28px;
+  background: var(--manila-dark);
+  border-bottom: 2px solid var(--manila-border);
+}
+
+.dossier-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: #DDD0BA;
+  border: 2px solid var(--manila-border);
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  font-family: var(--font-dossier);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--ink-secondary);
+  letter-spacing: 0.06em;
+  box-shadow: 1px -1px 2px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.dossier-tab.active {
+  background: var(--manila-sheet);
+  border-bottom: 3px solid var(--manila-sheet);
+  margin-bottom: -2.5px;
+  color: var(--ink-primary);
+  font-weight: 800;
+  box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.08);
+}
+
+.tab-index-num {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 800;
+  background: var(--bauhaus-noir);
+  color: #FFF;
+  padding: 1px 5px;
+  border-radius: 1px;
+}
+
+.dossier-tab.active .tab-index-num {
+  background: var(--bauhaus-crimson);
+}
+
+/* Internal Manila Paper Sheet */
+.dossier-paper-sheet {
+  background: var(--manila-sheet);
+  padding: 32px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  position: relative;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+/* Dossier Section Header with Bauhaus Geometry */
+.dossier-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: var(--rule-bauhaus);
+  padding-bottom: 10px;
+  margin-bottom: 24px;
+}
+
+.header-stamp-block {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bauhaus-color-chip {
+  width: 14px;
+  height: 24px;
+}
+
+.bauhaus-color-chip.chip-red { background: var(--bauhaus-crimson); }
+.bauhaus-color-chip.chip-blue { background: var(--bauhaus-blue); }
+.bauhaus-color-chip.chip-ochre { background: var(--bauhaus-ochre); }
+
+.section-badge-num {
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  background: var(--bauhaus-noir);
+  color: #FFF;
+  padding: 3px 8px;
+}
+
+.header-heading-group {
+  flex: 1;
+  margin-left: 14px;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--bauhaus-noir);
+  line-height: 1.2;
+}
+
+.section-sub {
+  font-family: var(--font-dossier);
+  font-size: 0.72rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.06em;
+}
+
+.header-status-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #EDE6D8;
+  padding: 4px 12px;
+  border: 1px solid var(--manila-border);
+}
+
+.status-callout {
+  font-family: var(--font-dossier);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--ink-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   4. SKEUOMORPHIC JEWELED PILOT LAMPS & RUBBER STAMPS
+   -------------------------------------------------------------------------- */
+.pilot-lamp {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1.5px solid #282420;
+  background: radial-gradient(circle at 35% 35%, #888, #444);
+  box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.6), inset -1px -1px 1px rgba(0, 0, 0, 0.6), 0 1px 2px rgba(0, 0, 0, 0.35);
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.pilot-lamp.sm {
+  width: 10px;
+  height: 10px;
+}
+
+.pilot-lamp.lamp-green {
+  background: radial-gradient(circle at 35% 35%, #86EFAC 0%, #10B981 50%, #064E3B 100%);
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.8), inset 1px 1px 2px #FFF;
+}
+
+.pilot-lamp.lamp-amber {
+  background: radial-gradient(circle at 35% 35%, #FDE68A 0%, #F59E0B 50%, #78350F 100%);
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.8), inset 1px 1px 2px #FFF;
+}
+
+.pilot-lamp.lamp-blue {
+  background: radial-gradient(circle at 35% 35%, #93C5FD 0%, #2563EB 50%, #1E3A8A 100%);
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.8), inset 1px 1px 2px #FFF;
+}
+
+.pilot-lamp.lamp-off {
+  background: radial-gradient(circle at 35% 35%, #9CA3AF 0%, #4B5563 60%, #1F2937 100%);
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+/* Authentic Weathered Rubber Ink Stamp */
+.rubber-stamp {
+  display: inline-block;
+  border: 2.5px dashed var(--stamp-red);
+  color: var(--stamp-red);
+  font-family: var(--font-dossier);
+  font-weight: 800;
+  font-size: 0.76rem;
+  letter-spacing: 0.12em;
+  padding: 4px 10px;
+  text-transform: uppercase;
+  transform: rotate(-4deg);
+  opacity: 0.92;
+  text-shadow: 0 0 1px rgba(186, 24, 27, 0.4);
+  user-select: none;
+}
+
+.rubber-stamp.stamp-evidence {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  background: rgba(250, 246, 237, 0.9);
+  backdrop-filter: blur(1px);
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.rubber-stamp.stamp-small {
+  font-size: 0.65rem;
+  padding: 2px 8px;
+  border-width: 1.5px;
+  transform: rotate(2deg);
+}
+
+.rubber-stamp.stamp-verified-chip {
+  font-size: 0.76rem;
+  padding: 3px 12px;
+  transform: rotate(-3deg);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* Prominent Blockchain Notarization Animated Rubber Stamp */
+.rubber-stamp.stamp-notarized-heavy {
+  border: 3.5px double var(--stamp-red);
+  padding: 10px 18px;
+  background: rgba(255, 253, 248, 0.95);
+  box-shadow: 0 6px 14px rgba(186, 24, 27, 0.3);
+  text-align: center;
+  transform: rotate(-5deg);
+  margin-top: 14px;
+  display: none;
+}
+
+.stamp-border-frame {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stamp-line-1 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.stamp-line-2 {
+  font-family: var(--font-dossier);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.stamp-line-3 {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  opacity: 0.85;
+}
+
+@keyframes stampSlam {
+  0% {
+    transform: scale(2.4) rotate(15deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(0.92) rotate(-6deg);
+    opacity: 1;
+  }
+  80% {
+    transform: scale(1.04) rotate(-4deg);
+  }
+  100% {
+    transform: scale(1) rotate(-5deg);
+    opacity: 0.94;
+  }
+}
+
+.stamp-slam-animated {
+  display: block !important;
+  animation: stampSlam 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* --------------------------------------------------------------------------
+   5. SECTION 01: PHYSICAL EVIDENCE PLATE (IMAGE & BIOMETRICS)
+   -------------------------------------------------------------------------- */
+.evidence-grid-split {
+  display: grid;
+  grid-template-columns: 1fr 1.08fr;
+  gap: 32px;
+  align-items: start;
+}
+
+/* Left: Photo Plate Cardboard */
+.photo-plate-cardboard {
+  background: #F4EEDF;
+  border: 2px solid #C4B59B;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), inset 0 0 4px rgba(255, 255, 255, 0.6);
+  padding: 24px 20px 18px 26px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Simulated Transparent Scotch Tape */
+.scotch-tape {
+  position: absolute;
+  width: 58px;
+  height: 22px;
+  background: rgba(255, 252, 220, 0.55);
+  border: 1px solid rgba(215, 205, 175, 0.6);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(1px);
+  z-index: 12;
+  pointer-events: none;
+}
+
+.scotch-tape.tape-tl {
+  top: -9px;
+  left: -14px;
+  transform: rotate(-34deg);
+}
+
+.scotch-tape.tape-tr {
+  top: -9px;
+  right: -14px;
+  transform: rotate(34deg);
+}
+
+/* Photo Mounting Corners */
+.photo-mount-corner {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  z-index: 11;
+  pointer-events: none;
+}
+
+.photo-mount-corner.pc-tl {
+  top: 6px;
+  left: 6px;
+  border-top: 4px solid var(--bauhaus-noir);
+  border-left: 4px solid var(--bauhaus-noir);
+}
+
+.photo-mount-corner.pc-tr {
+  top: 6px;
+  right: 6px;
+  border-top: 4px solid var(--bauhaus-noir);
+  border-right: 4px solid var(--bauhaus-noir);
+}
+
+.photo-mount-corner.pc-bl {
+  bottom: 6px;
+  left: 6px;
+  border-bottom: 4px solid var(--bauhaus-noir);
+  border-left: 4px solid var(--bauhaus-noir);
+}
+
+.photo-mount-corner.pc-br {
+  bottom: 6px;
+  right: 6px;
+  border-bottom: 4px solid var(--bauhaus-noir);
+  border-right: 4px solid var(--bauhaus-noir);
+}
+
+/* Forensic Millimeter Caliper Rulers */
+.forensic-ruler.horizontal-top {
+  height: 12px;
+  border-bottom: 1.5px solid var(--bauhaus-noir);
+  background: repeating-linear-gradient(
+    90deg,
+    var(--bauhaus-noir) 0px,
+    var(--bauhaus-noir) 1px,
+    transparent 1px,
+    transparent 6px
+  );
+  position: relative;
+  margin-bottom: 4px;
+}
+
+.tick-label {
+  position: absolute;
+  top: -12px;
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: var(--ink-secondary);
+}
+
+.tick-label.l-0 { left: 0; }
+.tick-label.l-25 { left: 25%; }
+.tick-label.l-50 { left: 50%; }
+.tick-label.l-75 { left: 75%; }
+.tick-label.l-100 { right: 0; }
+
+.forensic-ruler.vertical-left {
+  position: absolute;
+  top: 24px;
+  left: 8px;
+  bottom: 60px;
+  width: 12px;
+  border-right: 1.5px solid var(--bauhaus-noir);
+  background: repeating-linear-gradient(
+    180deg,
+    var(--bauhaus-noir) 0px,
+    var(--bauhaus-noir) 1px,
+    transparent 1px,
+    transparent 6px
+  );
+}
+
+.tick-label.v-0 { top: 0; left: -8px; }
+.tick-label.v-25 { top: 25%; left: -8px; }
+.tick-label.v-50 { top: 50%; left: -8px; }
+.tick-label.v-75 { top: 75%; left: -8px; }
+
+/* Photo Stage Viewport */
+.photo-stage-viewport {
+  background: #FFF;
+  border: 2px solid var(--bauhaus-noir);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+}
+
+.photo-stage-viewport:focus-visible {
+  outline: 2px dashed var(--bauhaus-crimson);
+}
+
+.photo-image-frame {
+  width: 100%;
+  height: 330px;
+  position: relative;
+  overflow: hidden;
+  background: #EFE9DB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.specimen-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.viewfinder-reticle-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.viewfinder-sweep-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(186, 24, 27, 0.85);
+  box-shadow: 0 0 8px rgba(186, 24, 27, 0.9);
+  pointer-events: none;
+  z-index: 6;
+  opacity: 0;
+}
+
+.viewfinder-sweep-line.active {
+  opacity: 1;
+  animation: sweepScan 2s infinite linear;
+}
+
+@keyframes sweepScan {
+  0% { top: 0%; }
+  50% { top: 98%; }
+  100% { top: 0%; }
+}
+
+.photo-caption-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: #F8F5EE;
+  border-top: 1.5px solid var(--bauhaus-noir);
+}
+
+.caption-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-dossier);
+  font-size: 0.72rem;
+}
+
+.caption-filename {
+  font-weight: 700;
+  color: var(--ink-primary);
+}
+
+.caption-res {
+  color: var(--ink-muted);
+}
+
+.caption-right {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-photo-action {
+  font-family: var(--font-dossier);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  background: #EAE3D2;
+  border: 1.5px solid var(--ink-secondary);
+  color: var(--ink-primary);
+  cursor: pointer;
+  box-shadow: 1px 1px 0 var(--ink-secondary);
+}
+
+.btn-photo-action:hover {
+  background: #DFD7C4;
+}
+
+.btn-photo-action.text-warn {
+  color: var(--bauhaus-crimson);
+}
+
+.plate-telemetry-ribbon {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-dossier);
+  font-size: 0.72rem;
+  padding: 4px 4px 0 4px;
+}
+
+.t-key {
+  color: var(--ink-muted);
+  font-weight: 700;
+}
+
+.t-val {
+  font-family: var(--font-mono);
+  color: var(--ink-primary);
+  font-weight: 700;
+}
+
+.text-green {
+  color: #15803D !important;
+}
+
+/* Forensic Evidence Ingestion Bay (Replacing hardcoded sample slides) */
+.evidence-ingest-dock {
+  margin-top: 14px;
+  background: #EDE5D6;
+  border: 2px solid var(--bauhaus-noir);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.18);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dock-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1.5px dashed var(--manila-border);
+  padding-bottom: 6px;
+}
+
+.dock-header-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dock-bullet {
+  color: var(--bauhaus-crimson);
+  font-size: 0.75rem;
+}
+
+.dock-title {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--bauhaus-noir);
+}
+
+.dock-stamp {
+  font-family: var(--font-dossier);
+  font-size: 0.62rem;
+  font-weight: 700;
+  background: var(--bauhaus-blue);
+  color: #FFF;
+  padding: 1px 6px;
+  letter-spacing: 0.05em;
+}
+
+.dock-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ingest-instructions {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #FAF6ED;
+  border: 1px solid var(--manila-border);
+  padding: 8px 10px;
+  font-family: var(--font-dossier);
+  font-size: 0.72rem;
+  color: var(--ink-secondary);
+  line-height: 1.4;
+}
+
+.ingest-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.dock-actions-row {
+  display: grid;
+  grid-template-columns: 1.4fr 1.3fr 1fr;
+  gap: 8px;
+}
+
+.btn-dock-primary,
+.btn-dock-secondary,
+.btn-dock-warn {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  padding: 8px 10px;
+  cursor: pointer;
+  border: 1.5px solid var(--bauhaus-noir);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn-dock-primary {
+  background: var(--bauhaus-blue);
+  color: #FFF;
+  box-shadow: 2px 2px 0 var(--bauhaus-noir);
+}
+.btn-dock-primary:hover {
+  background: #254670;
+  transform: translateY(-1px);
+}
+
+.btn-dock-secondary {
+  background: #FAF8F2;
+  color: var(--bauhaus-noir);
+  box-shadow: 2px 2px 0 var(--bauhaus-noir);
+}
+.btn-dock-secondary:hover {
+  background: #F0EAD8;
+  transform: translateY(-1px);
+}
+
+.btn-dock-warn {
+  background: #FEE2E2;
+  color: #991B1B;
+  border-color: #991B1B;
+  box-shadow: 2px 2px 0 #991B1B;
+}
+.btn-dock-warn:hover {
+  background: #FECACA;
+  transform: translateY(-1px);
+}
+
+.dock-status-tape {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: #111417;
+  color: #E2E8F0;
+  padding: 5px 10px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  border: 1px solid #334155;
+  flex-wrap: wrap;
+}
+
+.tape-label {
+  color: var(--bauhaus-ochre);
+  font-weight: 700;
+}
+
+.tape-val {
+  color: #4ADE80;
+}
+
+.tape-sha {
+  color: #94A3B8;
+  font-size: 0.62rem;
+  margin-left: auto;
+}
+
+/* Right: Bauhaus Data Card */
+.bauhaus-data-card {
+  background: #FAF8F2;
+  border: var(--rule-bauhaus);
+  box-shadow: 4px 4px 0 var(--bauhaus-noir);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card-meta-masthead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.serial-stamp-group {
+  font-family: var(--font-dossier);
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.stamp-prefix {
+  color: var(--ink-muted);
+}
+
+.stamp-serial {
+  color: var(--bauhaus-noir);
+  margin-left: 6px;
+}
+
+/* Primary Bauhaus Geometric Accent Strip */
+.bauhaus-pigment-strip {
+  display: flex;
+  height: 6px;
+  width: 100%;
+  border: 1px solid var(--bauhaus-noir);
+}
+
+.pigment.cobalt { flex: 3; background: var(--bauhaus-blue); }
+.pigment.crimson { flex: 4; background: var(--bauhaus-crimson); }
+.pigment.ochre { flex: 2; background: var(--bauhaus-ochre); }
+.pigment.noir { flex: 1; background: var(--bauhaus-noir); }
+
+/* Model Spec Table */
+.model-spec-table {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #F1ECE0;
+  border: 1.5px solid var(--manila-border);
+  padding: 10px 14px;
+}
+
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-dossier);
+  font-size: 0.74rem;
+  border-bottom: 1px dotted var(--manila-border);
+  padding-bottom: 4px;
+}
+
+.spec-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.spec-key {
+  font-weight: 700;
+  color: var(--ink-muted);
+}
+
+.spec-val {
+  font-family: var(--font-mono);
+  color: var(--ink-primary);
+  font-weight: 500;
+}
+
+.spec-val.highlight {
+  color: var(--bauhaus-crimson);
+  font-weight: 700;
+}
+
+.mono-hash-preview {
+  color: var(--bauhaus-blue);
+  font-weight: 700;
+}
+
+.mono-vector {
+  color: var(--ink-secondary);
+}
+
+/* CRT Oscilloscope Vector Waveform Strip */
+.crt-oscilloscope-housing {
+  background: #111417;
+  border: 2px solid #2B303A;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.9), 0 2px 6px rgba(0, 0, 0, 0.3);
+  padding: 10px 12px;
+  border-radius: 2px;
+}
+
+.oscilloscope-label-bar {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #94A3B8;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+
+.scope-freq {
+  color: var(--crt-phosphor);
+}
+
+.crt-screen-frame {
+  width: 100%;
+  height: 96px;
+  background: var(--crt-bg);
+  border: 1.5px solid #143522;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.9);
+}
+
+.crt-graticule-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(var(--crt-graticule) 1px, transparent 1px),
+    linear-gradient(90deg, var(--crt-graticule) 1px, transparent 1px);
+  background-size: 20px 16px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.oscilloscope-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.crt-phosphor-glare {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.oscilloscope-scale-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: #64748B;
+  margin-top: 4px;
+}
+
+/* Mechanical Punchcard 128-D Embedding Matrix */
+.punchcard-housing {
+  background: #E8DEC9;
+  border: 2px solid #AD9B7F;
+  padding: 10px 14px;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.15);
+}
+
+.punchcard-header {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--ink-secondary);
+  margin-bottom: 8px;
+}
+
+.punchcard-board {
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  gap: 4px;
+}
+
+.punch-slot {
+  aspect-ratio: 1 / 1;
+  background: #D9CBAD;
+  border: 1px solid #B8A584;
+  border-radius: 50%;
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.35);
+  transition: all 0.2s ease;
+}
+
+.punch-slot.punched {
+  background: #111417;
+  border-color: #000;
+  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.95);
+}
+
+.punch-slot.punched-high {
+  background: var(--bauhaus-crimson);
+  border-color: #7E0D0F;
+  box-shadow: 0 0 4px rgba(186, 24, 27, 0.5);
+}
+
+/* --------------------------------------------------------------------------
+   6. SECTION 02: INTERCEPTED SOCIAL TRANSMISSION (OSINT DISCOVERY)
+   -------------------------------------------------------------------------- */
+.teletype-bulletin-sheet {
+  background: #FFFDF8;
+  border: 2px solid var(--bauhaus-noir);
+  box-shadow: 4px 4px 0 var(--bauhaus-blue);
+  padding: 24px;
+  position: relative;
+}
+
+.teletype-masthead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1.5px dashed var(--ink-muted);
+  padding-bottom: 12px;
+  margin-bottom: 18px;
+}
+
+.agency-title {
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--bauhaus-noir);
+  display: block;
+}
+
+.agency-dispatch-id {
+  font-family: var(--font-dossier);
+  font-size: 0.7rem;
+  color: var(--ink-muted);
+}
+
+.intercepted-transmission-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.transmission-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.embossed-metal-badge {
+  background: linear-gradient(180deg, #E2E8F0 0%, #94A3B8 50%, #475569 100%);
+  border: 1px solid #1E293B;
+  padding: 3px 12px;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.25), inset 0 1px 0 #FFF;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.metal-rivet {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #0F172A;
+}
+
+.badge-text {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #0F172A;
+  letter-spacing: 0.08em;
+}
+
+.typewriter-timestamp {
+  font-family: var(--font-dossier);
+  font-size: 0.72rem;
+  color: var(--ink-secondary);
+}
+
+.confidence-gauge {
+  margin-left: auto;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 800;
+  background: #FEF3C7;
+  border: 1px solid #F59E0B;
+  padding: 2px 10px;
+  color: #92400E;
+}
+
+.intercepted-profile-block {
+  display: flex;
+  gap: 24px;
+  background: #F9F6ED;
+  border: 1.5px solid var(--manila-border);
+  padding: 18px;
+}
+
+.profile-avatar-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.avatar-photo-border {
+  width: 68px;
+  height: 68px;
+  background: #E8DEC9;
+  border: 2px solid var(--bauhaus-noir);
+  box-shadow: 2px 2px 0 var(--bauhaus-noir);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-initials {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--bauhaus-crimson);
+}
+
+.avatar-badge {
+  font-family: var(--font-dossier);
+  font-size: 0.62rem;
+  font-weight: 700;
+  background: var(--bauhaus-noir);
+  color: #FFF;
+  padding: 1px 6px;
+}
+
+.profile-text-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.profile-name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--bauhaus-noir);
+}
+
+.profile-biography {
+  font-family: var(--font-dossier);
+  font-size: 0.8rem;
+  color: var(--ink-secondary);
+  line-height: 1.5;
+}
+
+.intercepted-url-terminal {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #111417;
+  padding: 6px 12px;
+  border: 1px solid #334155;
+  margin-top: 4px;
+}
+
+.url-prompt {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--bauhaus-ochre);
+  font-weight: 700;
+}
+
+.typewriter-target-link {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #93C5FD;
+  text-decoration: underline;
+  word-break: break-all;
+}
+
+.typewriter-target-link:hover {
+  color: #BFDBFE;
+}
+
+.link-dispatch-arrow {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #22C55E;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.secondary-intercepts-strip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-dossier);
+  font-size: 0.72rem;
+  border-top: 1px solid var(--manila-border);
+  padding-top: 10px;
+}
+
+.secondary-label {
+  font-weight: 700;
+  color: var(--ink-muted);
+}
+
+.secondary-tags-list {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.secondary-tag {
+  background: #EAE2D0;
+  border: 1px solid #C4B59B;
+  padding: 2px 8px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--ink-primary);
+}
+
+/* --------------------------------------------------------------------------
+   6-B. ALL CORRELATED WEB MATCHES DOSSIER & DIRECTORY
+   -------------------------------------------------------------------------- */
+.all-web-matches-dossier {
+  margin-top: 24px;
+  background: #FAF7ED;
+  border: 2px solid var(--bauhaus-noir);
+  box-shadow: 4px 4px 0 var(--bauhaus-noir);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+.matches-roster-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  border-bottom: 2px solid var(--bauhaus-noir);
+  padding-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.roster-heading-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 650px;
+}
+
+.roster-badge-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.roster-badge-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  background: var(--bauhaus-blue);
+  color: #FFF;
+  padding: 1px 6px;
+}
+
+.roster-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--bauhaus-noir);
+  letter-spacing: -0.01em;
+}
+
+.roster-subtitle {
+  font-family: var(--font-dossier);
+  font-size: 0.76rem;
+  color: var(--ink-secondary);
+  line-height: 1.4;
+}
+
+.roster-actions-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-roster-action {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  padding: 6px 12px;
+  background: #FFF;
+  color: var(--bauhaus-noir);
+  border: 1.5px solid var(--bauhaus-noir);
+  box-shadow: 2px 2px 0 var(--bauhaus-noir);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.12s ease;
+  white-space: nowrap;
+}
+
+.btn-roster-action:hover {
+  background: #F0EAD8;
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--bauhaus-noir);
+}
+
+.btn-roster-action:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--bauhaus-noir);
+}
+
+/* Filter Bar */
+.matches-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  background: #EDE6D6;
+  border: 1px solid var(--manila-border);
+  padding: 8px 12px;
+}
+
+.filter-pills-group {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.filter-pill {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  background: #FAF8F2;
+  border: 1px solid #BBA78B;
+  color: var(--ink-secondary);
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.filter-pill:hover {
+  background: #FFF;
+  color: var(--bauhaus-noir);
+}
+
+.filter-pill.active {
+  background: var(--bauhaus-noir);
+  color: #FFF;
+  border-color: var(--bauhaus-noir);
+}
+
+.matches-summary-tag {
+  font-family: var(--font-dossier);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--ink-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.summary-dot {
+  color: #15803D;
+  font-size: 0.8rem;
+}
+
+/* Matches Grid */
+.matches-roster-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.match-item-card {
+  background: #FFF;
+  border: 1.5px solid var(--bauhaus-noir);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.12);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  position: relative;
+}
+
+.match-item-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0 var(--bauhaus-noir);
+}
+
+.match-item-card.is-primary {
+  border-left: 6px solid var(--bauhaus-crimson);
+  background: #FFFCF7;
+}
+
+.match-item-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.match-identity-badge-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.match-rank-tag {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 800;
+  background: var(--bauhaus-noir);
+  color: #FFF;
+  padding: 2px 6px;
+  letter-spacing: 0.04em;
+}
+
+.match-platform-chip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 8px;
+  border: 1px solid #334155;
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 800;
+  background: #F1F5F9;
+  color: #0F172A;
+}
+
+.match-platform-chip.instagram { background: #FDF2F8; border-color: #BE185D; color: #9D174D; }
+.match-platform-chip.twitter   { background: #F8FAFC; border-color: #0F172A; color: #0F172A; }
+.match-platform-chip.linkedin  { background: #EFF6FF; border-color: #1D4ED8; color: #1E40AF; }
+.match-platform-chip.wikipedia { background: #F8FAFC; border-color: #475569; color: #334155; }
+.match-platform-chip.imdb      { background: #FEF3C7; border-color: #B45309; color: #92400E; }
+.match-platform-chip.news      { background: #FEE2E2; border-color: #DC2626; color: #991B1B; }
+.match-platform-chip.academic  { background: #ECFDF5; border-color: #059669; color: #065F46; }
+.match-platform-chip.archive   { background: #F3E8FF; border-color: #7E22CE; color: #6B21A8; }
+
+.match-category-label {
+  font-family: var(--font-dossier);
+  font-size: 0.65rem;
+  color: var(--ink-muted);
+  font-weight: 700;
+}
+
+.match-confidence-gauge-box {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.conf-meter-bar {
+  width: 70px;
+  height: 6px;
+  background: #E2E8F0;
+  border: 1px solid #CBD5E1;
+  overflow: hidden;
+  position: relative;
+}
+
+.conf-meter-fill {
+  height: 100%;
+  background: #16A34A;
+  transition: width 0.4s ease;
+}
+
+.conf-text-num {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #15803D;
+}
+
+.match-item-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--bauhaus-noir);
+  line-height: 1.35;
+}
+
+.match-link-terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #111417;
+  padding: 6px 12px;
+  border: 1px solid #334155;
+}
+
+.match-url-prompt {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--bauhaus-ochre);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.match-direct-anchor {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #93C5FD;
+  text-decoration: underline;
+  word-break: break-all;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.match-direct-anchor:hover {
+  color: #BFDBFE;
+}
+
+.match-open-badge {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #4ADE80;
+  background: rgba(34, 197, 94, 0.15);
+  padding: 2px 6px;
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.match-copy-btn {
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: #E2E8F0;
+  background: #1E293B;
+  border: 1px solid #475569;
+  padding: 3px 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.12s ease;
+}
+
+.match-copy-btn:hover {
+  background: #334155;
+  color: #FFF;
+}
+
+.match-copy-btn.copied {
+  background: #15803D;
+  border-color: #22C55E;
+  color: #FFF;
+}
+
+.match-item-snippet {
+  font-family: var(--font-dossier);
+  font-size: 0.75rem;
+  color: var(--ink-secondary);
+  line-height: 1.45;
+  background: #FAF8F2;
+  border-left: 3px solid var(--manila-border);
+  padding: 6px 10px;
+}
+
+.match-item-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px dashed var(--manila-border);
+  padding-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--ink-muted);
+  flex-wrap: wrap;
+}
+
+.match-hash-pill {
+  color: var(--bauhaus-blue);
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   7. SECTION 03: BLOCKCHAIN CRYPTOGRAPHIC LEDGER (THE NOTARY)
+   -------------------------------------------------------------------------- */
+.notary-ledger-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+/* Left Plate: Three Stamped SHA-256 Hashes */
+.security-seal-plate {
+  background: #FAF7EE;
+  border: var(--rule-bauhaus);
+  box-shadow: 4px 4px 0 var(--bauhaus-noir);
+  padding: 22px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.plate-title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--bauhaus-noir);
+  padding-bottom: 8px;
+}
+
+.plate-dot {
+  color: var(--bauhaus-ochre);
+  margin-right: 4px;
+}
+
+.plate-title {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--bauhaus-noir);
+}
+
+.plate-sec-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--ink-muted);
+}
+
+.hash-specimen-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.hash-stamped-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hash-row-header {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-dossier);
+  font-size: 0.72rem;
+}
+
+.hash-key-stamp {
+  font-weight: 800;
+  color: var(--bauhaus-crimson);
+}
+
+.hash-desc {
+  color: var(--ink-muted);
+  font-size: 0.65rem;
+}
+
+.hash-box-surface {
+  background: #101316;
+  border: 1.5px solid #334155;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.mono-hash-code {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: #E2E8F0;
+  word-break: break-all;
+  letter-spacing: 0.03em;
+}
+
+.btn-tactile-copy {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 800;
+  background: #334155;
+  color: #F8FAFC;
+  border: 1px solid #64748B;
+  padding: 3px 8px;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow: 1px 1px 0 #000;
+}
+
+.btn-tactile-copy:hover {
+  background: #475569;
+}
+
+.btn-tactile-copy:active {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+
+/* Debossed Gold Notary Seal */
+.debossed-notary-seal {
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+}
+
+.seal-outer-rim {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: 3px double #B45309;
+  background: radial-gradient(circle, #FDE68A 0%, #D97706 70%, #78350F 100%);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25), inset 1px 1px 3px rgba(255,255,255,0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 8px;
+  position: relative;
+}
+
+.seal-inner-text {
+  font-family: var(--font-display);
+  font-size: 0.44rem;
+  font-weight: 800;
+  color: #451A03;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.seal-center-glyph {
+  font-size: 1.8rem;
+  color: #78350F;
+  margin-top: 2px;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* Right Plate: Continuous Perforated Thermal Receipt */
+.thermal-receipt-slip {
+  background: #FFFDF9;
+  border: 2px solid var(--bauhaus-noir);
+  box-shadow: 4px 4px 0 var(--bauhaus-ochre);
+  padding: 22px 28px;
+  position: relative;
+}
+
+.sprocket-holes-strip {
+  position: absolute;
+  top: 14px;
+  bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  pointer-events: none;
+}
+
+.sprocket-holes-strip.left { left: 8px; }
+.sprocket-holes-strip.right { right: 8px; }
+
+.sprocket-holes-strip span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #D8CFBD;
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.receipt-header-banner {
+  border-bottom: 2px dashed #94A3B8;
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  text-align: center;
+}
+
+.receipt-agency-tag {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--bauhaus-crimson);
+  letter-spacing: 0.1em;
+}
+
+.receipt-contract {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--ink-muted);
+}
+
+/* Mechanical Drum / Odometer Block Counter */
+.odometer-counter-assembly {
+  background: #14171A;
+  border: 2px solid #334155;
+  padding: 10px 14px;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.9);
+}
+
+.odometer-label {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #94A3B8;
+  letter-spacing: 0.06em;
+}
+
+.odometer-drum-wheel-box {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+}
+
+.odometer-digit {
+  width: 28px;
+  height: 42px;
+  background: linear-gradient(180deg, #1E293B 0%, #0F172A 50%, #1E293B 100%);
+  border: 1px solid #475569;
+  box-shadow: inset 0 1px 2px rgba(255,255,255,0.2), 0 2px 4px rgba(0,0,0,0.8);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.odometer-digit::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 1px 1px rgba(0,0,0,0.8);
+}
+
+.odometer-digit span {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #F8FAFC;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+}
+
+.receipt-field-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-bottom: 1.5px dashed #CBD5E1;
+  padding-bottom: 12px;
+  margin-bottom: 14px;
+}
+
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-dossier);
+  font-size: 0.74rem;
+}
+
+.receipt-row.tx-row {
+  flex-direction: column;
+  gap: 3px;
+}
+
+.r-key {
+  font-weight: 700;
+  color: var(--ink-muted);
+}
+
+.r-val {
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+.r-val.highlight {
+  color: var(--bauhaus-crimson);
+}
+
+.r-val-link {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--bauhaus-blue);
+  word-break: break-all;
+  text-decoration: underline;
+}
+
+.receipt-action-row {
+  display: flex;
+  margin-bottom: 14px;
+}
+
+.btn-receipt-etherscan {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--bauhaus-blue);
+  color: #FFF;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  padding: 8px 14px;
+  border: 1.5px solid #0F172A;
+  box-shadow: 2px 2px 0 var(--bauhaus-noir);
+}
+
+.btn-receipt-etherscan:hover {
+  background: #152742;
+}
+
+.receipt-reverify-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btn-mechanical-reverify {
+  width: 100%;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+}
+
+.beveled-reverify-rim {
+  background: linear-gradient(180deg, #E2E8F0 0%, #CBD5E1 50%, #94A3B8 100%);
+  border: 1.5px solid #334155;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #0F172A;
+  letter-spacing: 0.06em;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2), inset 0 1px 0 #FFF;
+}
+
+.btn-mechanical-reverify:not(:disabled):hover .beveled-reverify-rim {
+  background: linear-gradient(180deg, #F1F5F9 0%, #E2E8F0 100%);
+}
+
+.btn-mechanical-reverify:not(:disabled):active .beveled-reverify-rim {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+.btn-mechanical-reverify:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.reverify-output-badge {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--ink-secondary);
+  background: #F1ECE0;
+  border: 1px solid var(--manila-border);
+  padding: 4px 10px;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   8. FOOTER: TELEPRINTER / GREEN-PHOSPHOR CRT MINI CONSOLE
+   -------------------------------------------------------------------------- */
+.teleprinter-console-footer {
+  background: #14171A;
+  border-top: 3px solid #000;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.75);
+  margin-top: auto;
+}
+
+.teleprinter-bezel {
+  max-width: 1520px;
+  margin: 0 auto;
+  padding: 8px 24px 14px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.teleprinter-control-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.teleprinter-title {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #E2E8F0;
+  letter-spacing: 0.08em;
+}
+
+.teleprinter-counter {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--crt-phosphor);
+  background: #064E3B;
+  padding: 1px 6px;
+  border-radius: 2px;
+}
+
+.bar-right {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-console-key {
+  background: #1E293B;
+  color: #94A3B8;
+  border: 1px solid #475569;
+  font-family: var(--font-dossier);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  cursor: pointer;
+  box-shadow: 1px 1px 0 #000;
+}
+
+.btn-console-key:hover {
+  background: #334155;
+  color: #FFF;
+}
+
+.teleprinter-screen-viewport {
+  height: 120px;
+  background: var(--crt-bg);
+  border: 2px solid #143522;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.95);
+  padding: 10px 14px;
+  overflow-y: auto;
+  position: relative;
+  transition: height 0.25s ease;
+}
+
+.teleprinter-screen-viewport.collapsed {
+  height: 0;
+  padding: 0 14px;
+  border-width: 0 2px;
+  overflow: hidden;
+}
+
+.screen-scanlines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.25) 0px,
+    rgba(0, 0, 0, 0.25) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  z-index: 5;
+}
+
+.teleprinter-output-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.teleprinter-line {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.4;
+  display: flex;
+  gap: 8px;
+  word-break: break-all;
+}
+
+.teleprinter-line .t-stamp {
+  color: #64748B;
+  flex-shrink: 0;
+}
+
+.teleprinter-line.sys .t-msg { color: #38BDF8; }
+.teleprinter-line.info .t-msg { color: #E2E8F0; }
+.teleprinter-line.success .t-msg { color: #4ADE80; }
+.teleprinter-line.chain .t-msg { color: #FBBF24; }
+.teleprinter-line.error .t-msg { color: #F87171; }
+
+/* --------------------------------------------------------------------------
+   9. RESPONSIVE BREAKPOINTS
+   -------------------------------------------------------------------------- */
+@media (max-width: 1200px) {
+  .deck-frame {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .deck-center { justify-content: flex-start; }
+  .deck-right { justify-content: stretch; }
+  .action-trigger-block { max-width: 100%; }
+
+  .evidence-grid-split,
+  .notary-ledger-split {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dossier-tab-strip {
+    overflow-x: auto;
+    padding: 10px 14px 0 14px;
+  }
+  .dossier-tab {
+    padding: 6px 12px;
+    font-size: 0.68rem;
+  }
+  .dossier-paper-sheet {
+    padding: 20px 16px;
+  }
+  .intercepted-profile-block {
+    flex-direction: column;
+  }
+}

@@ -1,4 +1,9 @@
 import os
+import sys
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 import json
 from pathlib import Path
 import numpy as np
@@ -164,6 +169,40 @@ class FaceDetector:
         distance = float(np.linalg.norm(k - u))
         is_match = bool(distance < tolerance)
         return is_match, distance
+
+    def identify_face(self, encoding, db_path="data/results/known_faces_db.json", max_threshold=0.38):
+        """
+        Identify the subject purely by matching their 128-D biometric vector against known facial embeddings.
+        Uses a strict distance threshold (0.38) so unknown/novel faces are not misclassified.
+        Does NOT rely on image file name or metadata.
+        """
+        if encoding is None or len(encoding) == 0:
+            return None, 1.0, None
+
+        db_file = Path(db_path)
+        if not db_file.exists():
+            return None, 1.0, None
+
+        try:
+            with open(db_file, "r") as f:
+                known_db = json.load(f)
+        except Exception:
+            return None, 1.0, None
+
+        query_vec = np.array(encoding, dtype=np.float64)
+        best_match = None
+        min_dist = float("inf")
+
+        for name, k_vec in known_db.items():
+            dist = float(np.linalg.norm(query_vec - np.array(k_vec, dtype=np.float64)))
+            if dist < min_dist:
+                min_dist = dist
+                best_match = name
+
+        if min_dist <= max_threshold:
+            confidence = max(60.0, min(99.8, round((1.0 - (min_dist / max_threshold)) * 39.8 + 60.0, 1)))
+            return best_match, min_dist, confidence
+        return None, min_dist, None
 
     def save_encoding(self, encoding, filename="face_encoding.json"):
         """

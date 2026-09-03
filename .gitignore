@@ -1,9 +1,14 @@
 .env
+.env.*
 __pycache__/
 *.pyc
+*.pyo
 .pytest_cache/
 *.egg-info/
 venv/
 .vscode/
 data/results/*.json
+!data/results/known_faces_db.json
 data/logs/*
+*.zip
+*.exe

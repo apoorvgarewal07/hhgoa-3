@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FACE·ID × CHAIN // Bauhaus Skeuomorphic Dossier &amp; Sepolia Notary</title>
+  <meta name="description" content="Bauhaus × Skeuomorphic × Vintage Analog Dossier for Face Identification &amp; Sepolia Blockchain Verification Pipeline (HH Goa 2026 - Task 3).">
+  <meta property="og:title" content="FACE·ID × CHAIN // Bauhaus Skeuomorphic Dossier &amp; Sepolia Notary">
+  <meta property="og:description" content="Bauhaus × Skeuomorphic × Vintage Analog Dossier for Face Identification &amp; Sepolia Blockchain Verification Pipeline (HH Goa 2026 - Task 3).">
+  
+  <!-- Typography: Bauhaus Sans (Space Grotesk, Syne) & Cold Monospaced Typewriter (Courier Prime, DM Mono, Special Elite) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Space+Grotesk:wght@500;600;700;800&family=Special+Elite&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="dossier-workstation">
+
+  <!-- ========================================================================
+       1. MASTHEAD / CONTROL DECK (WORKSTATION HEADER)
+       ======================================================================== -->
+  <header id="control-deck" class="control-deck-masthead">
+    <div class="deck-frame">
+      
+      <!-- Left: Case Dossier Tag & Archive Classification -->
+      <div class="deck-section deck-left">
+        <div class="dossier-classification-plate">
+          <div class="stamp-classified" aria-label="Classification: Confidential Surveillance Archive">
+            CONFIDENTIAL // EYES ONLY
+          </div>
+          <div class="case-dossier-tag">
+            <span class="dossier-prefix">[ARCHIVE BUREAU: HH-GOA-2026]</span>
+            <span class="dossier-pipe">//</span>
+            <span class="dossier-sub">SUBJECT BIO-IDENT</span>
+            <span class="dossier-pipe">//</span>
+            <span class="dossier-net">SEPOLIA TESTNET</span>
+          </div>
+        </div>
+        <div class="dossier-stamped-id">
+          <span class="id-label">DOSSIER ID:</span>
+          <span class="id-val" id="case-id-display">#HHG-2026-T3</span>
+          <span class="id-barcode" aria-hidden="true">||| | |||| || ||| ||||| ||</span>
+        </div>
+      </div>
+
+      <!-- Center: Physical Power Switch & Cathode Indicator Lamp -->
+      <div class="deck-section deck-center">
+        <div class="power-assembly" id="power-switch-assembly">
+          <div class="power-label-plate">
+            <span class="plate-screw left"></span>
+            <span class="plate-text">STATION POWER &amp; SEPOLIA NODE</span>
+            <span class="plate-screw right"></span>
+          </div>
+          <div class="switch-lamp-group">
+            <!-- Physical Bakelite Toggle with Brass Bezel -->
+            <label class="bakelite-toggle-wrapper" for="toggle-power">
+              <input type="checkbox" id="toggle-power" class="visually-hidden" checked aria-label="Toggle Station Power">
+              <div class="brass-bezel">
+                <div class="toggle-track">
+                  <div class="toggle-knob">
+                    <div class="knob-grooves"></div>
+                  </div>
+                </div>
+              </div>
+            </label>
+
+            <!-- Illuminated Cathode Indicator Lamp -->
+            <div class="cathode-lamp-unit" id="cathode-lamp-unit">
+              <div class="cathode-lens active" id="cathode-lamp">
+                <div class="cathode-filament"></div>
+                <div class="cathode-glow"></div>
+              </div>
+              <span class="cathode-label" id="cathode-label">SEPOLIA ACTIVE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Chunky Mechanical Action Trigger -->
+      <div class="deck-section deck-right">
+        <div class="action-trigger-block">
+          <button type="button" id="btn-engage-pipeline" class="btn-chunky-push" disabled aria-label="Engage Analysis &amp; Notarize">
+            <div class="btn-beveled-plate">
+              <div class="btn-top-surface">
+                <span class="trigger-jeweled-lamp lamp-off" id="execute-pilot-lamp" aria-hidden="true"></span>
+                <span class="trigger-caption">[ ENGAGE ANALYSIS &amp; NOTARIZE ]</span>
+                <span class="trigger-bracket-right">▶</span>
+              </div>
+            </div>
+          </button>
+          
+          <div class="pipeline-progress-housing">
+            <div class="progress-segmented-track" id="pipeline-progress-track">
+              <div class="progress-segment-fill" id="pipeline-progress-bar"></div>
+            </div>
+            <div class="progress-readout-row">
+              <span class="progress-label" id="pipeline-status-label">STATUS: AWAITING SPECIMEN INGESTION</span>
+              <span class="progress-pct" id="pipeline-pct-label">0%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       WORKBENCH DESK SURFACE & MANILA DOSSIER BINDER
+       ======================================================================== -->
+  <main class="workbench-bench-surface" id="main-workbench">
+    <div class="manila-dossier-folder">
+
+      <!-- Skeuomorphic Top Hardware: Steel Binder Clip & Brass Rivets -->
+      <div class="dossier-binder-hardware" aria-hidden="true">
+        <div class="brass-grommet left"></div>
+        <div class="steel-binder-clamp">
+          <div class="clamp-body">
+            <div class="clamp-wire-loop"></div>
+            <span class="clamp-stamp">TASK-03 // FORENSICS</span>
+          </div>
+        </div>
+        <div class="brass-grommet right"></div>
+      </div>
+
+      <!-- Manila Cardstock Tab Strip -->
+      <nav class="dossier-tab-strip" aria-label="Dossier Section Indexes">
+        <div class="dossier-tab active" data-tab-section="section-evidence">
+          <span class="tab-index-num">SEC.01</span>
+          <span class="tab-title">PHYSICAL EVIDENCE &amp; BIOMETRICS</span>
+        </div>
+        <div class="dossier-tab" data-tab-section="section-social">
+          <span class="tab-index-num">SEC.02</span>
+          <span class="tab-title">INTERCEPTED SOCIAL TELEGRAPH</span>
+        </div>
+        <div class="dossier-tab" data-tab-section="section-ledger">
+          <span class="tab-index-num">SEC.03</span>
+          <span class="tab-title">BLOCKCHAIN CRYPTOGRAPHIC NOTARY</span>
+        </div>
+        <div class="dossier-tab" data-tab-section="teleprinter-footer">
+          <span class="tab-index-num">SEC.04</span>
+          <span class="tab-title">TELEPRINTER TAPE BUFFER</span>
+        </div>
+      </nav>
+
+      <!-- Internal Manila Sheet Body -->
+      <div class="dossier-paper-sheet">
+
+        <!-- ==================================================================
+             SECTION 01: PHYSICAL EVIDENCE PLATE (IMAGE & BIOMETRICS)
+             ================================================================== -->
+        <section id="section-evidence" class="dossier-section section-evidence-plate">
+          
+          <!-- Section Title Bar with Bauhaus Geometric Accents -->
+          <div class="dossier-section-header">
+            <div class="header-stamp-block">
+              <span class="bauhaus-color-chip chip-red"></span>
+              <span class="section-badge-num">PLATE 01</span>
+            </div>
+            <div class="header-heading-group">
+              <h2 class="section-title">PHYSICAL EVIDENCE PLATE &amp; BIOMETRIC EXTRACTION</h2>
+              <span class="section-sub">OPTICAL CALIBRATION // 128-DIMENSIONAL EUCLIDEAN EMBEDDING SPECTRUM</span>
+            </div>
+            <div class="header-status-group">
+              <span class="pilot-lamp sm lamp-amber" id="stage1-status-lamp"></span>
+              <span class="status-callout" id="stage1-status-text">STAGING SPECIMEN</span>
+            </div>
+          </div>
+
+          <!-- Section 01 Main Grid: Left Evidence Plate, Right Bauhaus Data Card -->
+          <div class="evidence-grid-split">
+
+            <!-- LEFT: Physical Photo Printout with Caliper Rulers & Targeting -->
+            <div class="evidence-plate-left">
+              <div class="photo-plate-cardboard">
+                
+                <!-- Skeuomorphic Transparent Cellophane Tape & Corner Mounts -->
+                <div class="scotch-tape tape-tl" aria-hidden="true"></div>
+                <div class="scotch-tape tape-tr" aria-hidden="true"></div>
+                <div class="photo-mount-corner pc-tl" aria-hidden="true"></div>
+                <div class="photo-mount-corner pc-tr" aria-hidden="true"></div>
+                <div class="photo-mount-corner pc-bl" aria-hidden="true"></div>
+                <div class="photo-mount-corner pc-br" aria-hidden="true"></div>
+
+                <!-- Forensic Millimeter Caliper Rulers -->
+                <div class="forensic-ruler horizontal-top" aria-hidden="true">
+                  <span class="tick-label l-0">0mm</span>
+                  <span class="tick-label l-25">25mm</span>
+                  <span class="tick-label l-50">50mm</span>
+                  <span class="tick-label l-75">75mm</span>
+                  <span class="tick-label l-100">100mm</span>
+                </div>
+                <div class="forensic-ruler vertical-left" aria-hidden="true">
+                  <span class="tick-label v-0">0</span>
+                  <span class="tick-label v-25">25</span>
+                  <span class="tick-label v-50">50</span>
+                  <span class="tick-label v-75">75</span>
+                </div>
+
+                <!-- Photo Stage Container with Optical Viewfinder Crosshairs -->
+                <div class="photo-stage-viewport" id="drop-zone" tabindex="0" role="button" aria-label="Drop face portrait here or click to browse">
+                  <input type="file" id="face-file-input" class="visually-hidden" accept="image/jpeg,image/png,image/webp">
+                  
+                  <div class="photo-image-frame" id="stage-input-container">
+                    <img id="results-face-img" class="specimen-image" alt="Physical Forensic Evidence Subject" src="/static/samples/calibration_target.svg">
+                    
+                    <!-- Optical Viewfinder Crosshair & Crop Reticle Canvas -->
+                    <canvas id="results-box-canvas" class="viewfinder-reticle-canvas" width="400" height="340"></canvas>
+                    
+                    <!-- Red Ink Rubber Stamp Overlay -->
+                    <div class="rubber-stamp stamp-evidence" id="rubber-stamp-specimen" aria-label="Classification Stamp">
+                      EVIDENCE SPECIMEN // CONFIDENTIAL
+                    </div>
+
+                    <!-- Scan Beam Sweep Animation -->
+                    <div class="viewfinder-sweep-line" id="scan-bar" aria-hidden="true"></div>
+                  </div>
+
+                  <!-- Drop Zone Trigger Ribbon -->
+                  <div class="photo-caption-bar">
+                    <div class="caption-left">
+                      <span class="caption-icon">⊕</span>
+                      <span class="caption-filename" id="loaded-file-name">calibration_target.svg</span>
+                      <span class="caption-res" id="resolution-label">[400×400 PX // 24-BIT RGB]</span>
+                    </div>
+                    <div class="caption-right">
+                      <button type="button" id="btn-browse-trigger" class="btn-photo-action">BROWSE FILE</button>
+                      <button type="button" id="btn-clear-target" class="btn-photo-action text-warn">EJECT</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Viewfinder Coordinate Telemetry -->
+                <div class="plate-telemetry-ribbon">
+                  <div class="telemetry-item">
+                    <span class="t-key">TARGET ROI:</span>
+                    <span class="t-val" id="detected-coords-label">[(70, 300, 320, 90)]</span>
+                  </div>
+                  <div class="telemetry-item">
+                    <span class="t-key">CONFIDENCE:</span>
+                    <span class="t-val text-green" id="face-count-badge">FACES: 1 (99.4%)</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Photographic Evidence Ingestion & Calibration Bay -->
+              <div class="evidence-ingest-dock">
+                <div class="dock-header">
+                  <div class="dock-header-left">
+                    <span class="dock-bullet">■</span>
+                    <span class="dock-title">PHOTOGRAPHIC EVIDENCE INGESTION BAY</span>
+                  </div>
+                  <span class="dock-stamp">AIR-GAPPED STAGING</span>
+                </div>
+                
+                <div class="dock-body">
+                  <div class="ingest-instructions">
+                    <span class="ingest-icon">📥</span>
+                    <div class="ingest-text">
+                      <strong>DRAG &amp; DROP EVIDENCE PHOTOGRAPH</strong> or ingest from disk. Supports JPG, PNG, and WEBP captures for 68-point biometric extraction and 128-D embedding generation.
+                    </div>
+                  </div>
+
+                  <div class="dock-actions-row">
+                    <button type="button" id="btn-dock-browse" class="btn-dock-primary">
+                      <span>📁</span> INGEST FILE
+                    </button>
+                    <button type="button" id="btn-dock-demo" class="btn-dock-secondary">
+                      <span>⚡</span> CALIBRATION TARGET
+                    </button>
+                    <button type="button" id="btn-dock-eject" class="btn-dock-warn">
+                      <span>⏏</span> EJECT STAGE
+                    </button>
+                  </div>
+
+                  <!-- 35mm Evidence Slide Drawer for Pre-loaded Specimens -->
+                  <div class="specimen-slide-drawer">
+                    <div class="drawer-header" style="display: flex; justify-content: space-between; align-items: center; margin: 8px 0 4px 0;">
+                      <span style="font-family: var(--font-display); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; color: var(--bauhaus-noir);">35MM SPECIMEN EVIDENCE SLIDES:</span>
+                      <span style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink-muted);">SELECT TO STAGE</span>
+                    </div>
+                    <div id="specimen-slides-tray" style="display: flex; gap: 8px; overflow-x: auto; padding: 4px 0 6px 0;">
+                      <button type="button" class="specimen-slide-btn" data-file="anvesh.jpg" title="Anvesh Portrait" style="background: var(--manila-sheet); border: 1.5px solid var(--bauhaus-noir); padding: 3px 8px; font-family: var(--font-mono); font-size: 0.7rem; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+                        <span>👤</span> anvesh.jpg
+                      </button>
+                      <button type="button" class="specimen-slide-btn" data-file="srk.jpg" title="SRK Portrait" style="background: var(--manila-sheet); border: 1.5px solid var(--bauhaus-noir); padding: 3px 8px; font-family: var(--font-mono); font-size: 0.7rem; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+                        <span>👤</span> srk.jpg
+                      </button>
+                      <button type="button" class="specimen-slide-btn" data-file="salman_khan.jpg" title="Salman Khan Portrait" style="background: var(--manila-sheet); border: 1.5px solid var(--bauhaus-noir); padding: 3px 8px; font-family: var(--font-mono); font-size: 0.7rem; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+                        <span>👤</span> salman_khan.jpg
+                      </button>
+                      <button type="button" class="specimen-slide-btn" data-file="cameron_diaz.jpg" title="Cameron Diaz Portrait" style="background: var(--manila-sheet); border: 1.5px solid var(--bauhaus-noir); padding: 3px 8px; font-family: var(--font-mono); font-size: 0.7rem; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+                        <span>👤</span> cameron_diaz.jpg
+                      </button>
+                      <button type="button" class="specimen-slide-btn" data-file="idris_elba.jpg" title="Idris Elba Portrait" style="background: var(--manila-sheet); border: 1.5px solid var(--bauhaus-noir); padding: 3px 8px; font-family: var(--font-mono); font-size: 0.7rem; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+                        <span>👤</span> idris_elba.jpg
+                      </button>
+                      <button type="button" class="specimen-slide-btn" data-file="sample.jpg" title="Sample Subject" style="background: var(--manila-sheet); border: 1.5px solid var(--bauhaus-noir); padding: 3px 8px; font-family: var(--font-mono); font-size: 0.7rem; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+                        <span>👤</span> sample.jpg
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Ingestion Status Bar -->
+                  <div class="dock-status-tape">
+                    <span class="tape-label">STAGE INTEGRITY:</span>
+                    <span class="tape-val" id="dock-evidence-status">READY FOR DISPATCH</span>
+                    <span class="tape-sha" id="dock-evidence-hash">SHA-256: 0x8f2d...c419</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT: Bauhaus Data Card with Punchcard & CRT Oscilloscope -->
+            <div class="evidence-plate-right">
+              <div class="bauhaus-data-card">
+                
+                <!-- Card Header: Serial Number & Rubber Stamp Mark -->
+                <div class="card-meta-masthead">
+                  <div class="serial-stamp-group">
+                    <span class="stamp-prefix">DOSSIER FILE:</span>
+                    <span class="stamp-serial">#HHG-2026-T3 // SPECIMEN-BIO-01</span>
+                  </div>
+                  <div class="rubber-stamp stamp-small" aria-hidden="true">
+                    RESTRICTED ARCHIVE
+                  </div>
+                </div>
+
+                <!-- Primary Bauhaus Geometric Accent Strip -->
+                <div class="bauhaus-pigment-strip" aria-hidden="true">
+                  <div class="pigment cobalt"></div>
+                  <div class="pigment crimson"></div>
+                  <div class="pigment ochre"></div>
+                  <div class="pigment noir"></div>
+                </div>
+
+                <!-- Forensic Model Specifications Table -->
+                <div class="model-spec-table">
+                  <div class="spec-row">
+                    <span class="spec-key">ARCHITECTURE:</span>
+                    <span class="spec-val highlight" id="readout-model">dlib_resnet50 // opencv_dct_128</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-key">VECTOR DIMENSIONS:</span>
+                    <span class="spec-val" id="readout-dimensions">128 (IEEE 754 float32 / L2-Normalized)</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-key">STAGED DIGEST:</span>
+                    <span class="spec-val mono-hash-preview" id="meta-staged-hash">0x7b1e2d09c3a4f89d...</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-key">VECTOR HEAD:</span>
+                    <span class="spec-val mono-vector" id="readout-encoding-preview">[-0.1420, +0.0891, +0.2104, -0.0450...]</span>
+                  </div>
+                </div>
+
+                <!-- CRT Oscilloscope Vector Waveform Strip -->
+                <div class="crt-oscilloscope-housing">
+                  <div class="oscilloscope-bezel">
+                    <div class="oscilloscope-label-bar">
+                      <span class="scope-mode">OSCILLOSCOPE TELEMETRY // 128-D VECTOR HARMONICS</span>
+                      <span class="scope-freq">BANDWIDTH: 128 FLOATS</span>
+                    </div>
+                    <div class="crt-screen-frame">
+                      <div class="crt-graticule-grid" aria-hidden="true"></div>
+                      <canvas id="vector-heatmap-canvas" width="380" height="96" class="oscilloscope-canvas"></canvas>
+                      <div class="crt-phosphor-glare" aria-hidden="true"></div>
+                    </div>
+                    <div class="oscilloscope-scale-row">
+                      <span class="scale-point">-1.00 (MIN)</span>
+                      <span class="scale-point">0.00 (GROUND LEVEL)</span>
+                      <span class="scale-point">+1.00 (PEAK MAGNITUDE)</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Mechanical Punchcard 128-D Embedding Matrix -->
+                <div class="punchcard-housing">
+                  <div class="punchcard-header">
+                    <span class="punchcard-title">MECHANICAL PUNCHCARD // 128-D BIT-CELL REGISTER</span>
+                    <span class="punchcard-format">8 ROWS × 16 COLS</span>
+                  </div>
+                  <div class="punchcard-board" id="punchcard-board" aria-label="128-Dimensional Punchcard Matrix">
+                    <!-- Populated dynamically via app.js with 128 punch slots -->
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             SECTION 02: INTERCEPTED SOCIAL TRANSMISSION (OSINT DISCOVERY)
+             ================================================================== -->
+        <section id="section-social" class="dossier-section section-social-bulletin">
+          
+          <div class="dossier-section-header">
+            <div class="header-stamp-block">
+              <span class="bauhaus-color-chip chip-blue"></span>
+              <span class="section-badge-num">BULLETIN 02</span>
+            </div>
+            <div class="header-heading-group">
+              <h2 class="section-title">INTERCEPTED SOCIAL TRANSMISSION &amp; OSINT MATCH</h2>
+              <span class="section-sub">SERPAPI REVERSE IMAGE TELEGRAPH // CROSS-PLATFORM CORRELATION</span>
+            </div>
+            <div class="header-status-group">
+              <span class="pilot-lamp sm lamp-off" id="stage2-status-lamp"></span>
+              <span class="status-callout" id="stage2-status-text">AWAITING OSINT QUERY</span>
+            </div>
+          </div>
+
+          <!-- Intercepted Surveillance Bulletin Teletype Paper -->
+          <div class="teletype-bulletin-sheet">
+            <div class="teletype-perforation top" aria-hidden="true"></div>
+            
+            <div class="teletype-masthead">
+              <div class="teletype-agency">
+                <span class="agency-title">OFFICE OF INVESTIGATIVE TELECOMMUNICATIONS // OSINT ARCHIVE</span>
+                <span class="agency-dispatch-id">DISPATCH REF: #ST-8849-REV</span>
+              </div>
+              <div class="rubber-stamp stamp-verified-chip" id="rubber-stamp-osint">
+                PRIMARY MATCH CONFIRMED
+              </div>
+            </div>
+
+            <!-- Intercepted Social Match Main Card -->
+            <div class="intercepted-transmission-card">
+              
+              <div class="transmission-badge-row">
+                <div class="embossed-metal-badge" id="osint-platform-badge">
+                  <span class="metal-rivet left"></span>
+                  <span class="badge-text" id="osint-platform-tag">INSTAGRAM_RECORD</span>
+                  <span class="metal-rivet right"></span>
+                </div>
+                <div class="typewriter-timestamp" id="osint-intercept-time">
+                  INTERCEPTED: 2026-09-03 12:28:14 UTC // ROUTE: SERPAPI-GATE-01
+                </div>
+                <div class="confidence-gauge">
+                  <span class="gauge-label">TARGET CONFIDENCE:</span>
+                  <span class="gauge-val" id="kp-confidence">98.6%</span>
+                </div>
+              </div>
+
+              <!-- Matched Target Profile & External Link -->
+              <div class="intercepted-profile-block">
+                <div class="profile-avatar-slot">
+                  <div class="avatar-photo-border">
+                    <span class="avatar-initials" id="kp-initials">ID</span>
+                  </div>
+                  <span class="avatar-badge">VERIFIED</span>
+                </div>
+
+                <div class="profile-text-content">
+                  <h3 class="profile-name" id="kp-person-name">Specimen Entity: Subject Awaiting Intercept</h3>
+                  <p class="profile-biography" id="kp-person-desc">
+                    Reverse image search querying SerpAPI global index across Instagram, X (Twitter), LinkedIn, and Meta to isolate canonical identity, verified author profiles, and earliest published photograph.
+                  </p>
+
+                  <div class="intercepted-url-terminal">
+                    <span class="url-prompt">TARGET_URL &gt;</span>
+                    <a href="https://instagram.com/p/sample_id841" target="_blank" rel="noopener noreferrer" class="typewriter-target-link" id="osint-target-link">
+                      https://instagram.com/p/sample_id841
+                    </a>
+                    <span class="link-dispatch-arrow">↗ [OPEN ARCHIVE]</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Secondary Social Intercepts Teletype Tape -->
+              <div class="secondary-intercepts-strip">
+                <span class="secondary-label">INTERCEPT CHANNELS:</span>
+                <div class="secondary-tags-list" id="social-cards-grid">
+                  <span class="secondary-tag">🌐 GLOBAL WEB INDEX</span>
+                  <span class="secondary-tag">𝕏 VERIFIED PROFILES</span>
+                  <span class="secondary-tag">in PROFESSIONAL DOSSIERS</span>
+                  <span class="secondary-tag">🏛 PUBLIC ENCYCLOPEDIC ARCHIVES</span>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- ALL DISCOVERED WEB MATCHES WITH DIRECT ARCHIVAL LINKS -->
+            <div class="all-web-matches-dossier" id="all-web-matches-section">
+              <div class="matches-roster-header">
+                <div class="roster-heading-left">
+                  <div class="roster-badge-group">
+                    <span class="bauhaus-color-chip chip-blue"></span>
+                    <span class="roster-badge-tag">OSINT INTELLIGENCE DISPATCH</span>
+                  </div>
+                  <h3 class="roster-title">CORRELATED WEB MATCHES &amp; CITATION DIRECTORY</h3>
+                  <p class="roster-subtitle">
+                    All reverse image matches identified across global networks, public archives, and social profiles with direct clickable links and confidence ratings.
+                  </p>
+                </div>
+                
+                <div class="roster-actions-right">
+                  <button type="button" id="btn-copy-all-links" class="btn-roster-action" title="Copy all discovered web URLs">
+                    <span>📋</span> COPY ALL URLS
+                  </button>
+                  <button type="button" id="btn-export-matches-json" class="btn-roster-action" title="Export matches payload">
+                    <span>💾</span> EXPORT JSON
+                  </button>
+                </div>
+              </div>
+
+              <!-- Roster Filter Bar -->
+              <div class="matches-filter-bar">
+                <div class="filter-pills-group" id="matches-filter-pills" role="tablist">
+                  <button type="button" class="filter-pill active" data-filter="all">ALL MATCHES (<span id="filter-count-all">8</span>)</button>
+                  <button type="button" class="filter-pill" data-filter="social">SOCIAL PROFILES (<span id="filter-count-social">3</span>)</button>
+                  <button type="button" class="filter-pill" data-filter="archive">PUBLIC ARCHIVES (<span id="filter-count-archive">5</span>)</button>
+                  <button type="button" class="filter-pill" data-filter="high-conf">HIGH CONFIDENCE &gt;90% (<span id="filter-count-high">6</span>)</button>
+                </div>
+
+                <div class="matches-summary-tag">
+                  <span class="summary-dot">●</span>
+                  <span id="matches-summary-status">ALL DISCOVERED WEB RECORDS CORRELATED</span>
+                </div>
+              </div>
+
+              <!-- Match Cards Container -->
+              <div class="matches-roster-grid" id="web-matches-grid">
+                <!-- Dynamically populated by app.js -->
+              </div>
+            </div>
+
+            <div class="teletype-perforation bottom" aria-hidden="true"></div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             SECTION 03: BLOCKCHAIN CRYPTOGRAPHIC LEDGER (THE NOTARY)
+             ================================================================== -->
+        <section id="section-ledger" class="dossier-section section-blockchain-notary">
+          
+          <div class="dossier-section-header">
+            <div class="header-stamp-block">
+              <span class="bauhaus-color-chip chip-ochre"></span>
+              <span class="section-badge-num">NOTARY 03</span>
+            </div>
+            <div class="header-heading-group">
+              <h2 class="section-title">BLOCKCHAIN CRYPTOGRAPHIC LEDGER &amp; NOTARY</h2>
+              <span class="section-sub">ETHEREUM SEPOLIA TESTNET // FaceDataRegistry.sol // SHA-256 DIGEST REGISTRY</span>
+            </div>
+            <div class="header-status-group">
+              <span class="pilot-lamp sm lamp-off" id="stage3-status-lamp"></span>
+              <span class="status-callout" id="stage3-status-text">AWAITING NOTARIZATION</span>
+            </div>
+          </div>
+
+          <!-- Section 03 Main Grid: Left Plate Hashes, Right Plate Ledger Slip -->
+          <div class="notary-ledger-split">
+            
+            <!-- LEFT PLATE: Three Stamped Cryptographic SHA-256 Hashes -->
+            <div class="notary-plate-left">
+              <div class="security-seal-plate">
+                <div class="plate-title-bar">
+                  <span class="plate-dot">■</span>
+                  <span class="plate-title">CRYPTOGRAPHIC SHA-256 IMMUTABLE DIGESTS</span>
+                  <span class="plate-sec-tag">RFC 6234 // KECCAK-256</span>
+                </div>
+
+                <div class="hash-specimen-stack">
+                  
+                  <!-- Hash 1: Vector Digest -->
+                  <div class="hash-stamped-row">
+                    <div class="hash-row-header">
+                      <span class="hash-key-stamp">VECTOR_DIGEST:</span>
+                      <span class="hash-desc">128-D EMBEDDING STRING SHA-256</span>
+                    </div>
+                    <div class="hash-box-surface">
+                      <code class="mono-hash-code" id="hash-face-vector">0x0000000000000000000000000000000000000000000000000000000000000000</code>
+                      <button type="button" class="btn-tactile-copy" data-target="hash-face-vector" title="Copy Vector Digest">COPY</button>
+                    </div>
+                  </div>
+
+                  <!-- Hash 2: Plate SHA256 -->
+                  <div class="hash-stamped-row">
+                    <div class="hash-row-header">
+                      <span class="hash-key-stamp">PLATE_SHA256:</span>
+                      <span class="hash-desc">RAW PHOTOGRAPHIC PLATE BYTES</span>
+                    </div>
+                    <div class="hash-box-surface">
+                      <code class="mono-hash-code" id="hash-image-file">0x0000000000000000000000000000000000000000000000000000000000000000</code>
+                      <button type="button" class="btn-tactile-copy" data-target="hash-image-file" title="Copy Plate Hash">COPY</button>
+                    </div>
+                  </div>
+
+                  <!-- Hash 3: Target Hash -->
+                  <div class="hash-stamped-row">
+                    <div class="hash-row-header">
+                      <span class="hash-key-stamp">TARGET_HASH:</span>
+                      <span class="hash-desc">INTERCEPTED SOCIAL URL DIGEST</span>
+                    </div>
+                    <div class="hash-box-surface">
+                      <code class="mono-hash-code" id="hash-post-match">0x0000000000000000000000000000000000000000000000000000000000000000</code>
+                      <button type="button" class="btn-tactile-copy" data-target="hash-post-match" title="Copy Target Hash">COPY</button>
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- Debossed Gold Security Notary Seal -->
+                <div class="debossed-notary-seal" aria-hidden="true">
+                  <div class="seal-outer-rim">
+                    <div class="seal-inner-text">
+                      STAATLICHE FORENSIK // ETHEREUM SEPOLIA NOTARIZATION REGISTRY // 2026
+                    </div>
+                    <div class="seal-center-glyph">⟠</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- RIGHT PLATE: Tactile Blockchain Ledger Slip with Mechanical Drum Counter -->
+            <div class="notary-plate-right">
+              <div class="thermal-receipt-slip" id="thermal-receipt-slip">
+                
+                <!-- Pin-Feed Sprocket Holes along left and right margins -->
+                <div class="sprocket-holes-strip left" aria-hidden="true">
+                  <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                </div>
+                <div class="sprocket-holes-strip right" aria-hidden="true">
+                  <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                </div>
+
+                <div class="receipt-inner-body">
+                  <div class="receipt-header-banner">
+                    <span class="receipt-agency-tag">ETHEREUM SEPOLIA NOTARY CERTIFICATE</span>
+                    <span class="receipt-contract">CONTRACT: 0x3f5CEb96030ca5cc35e07FdfD20EAE7F6211CBEF</span>
+                  </div>
+
+                  <!-- Analog Drum / Mechanical Block Number Odometer -->
+                  <div class="odometer-counter-assembly">
+                    <span class="odometer-label">BLOCK NUMBER (SEPOLIA LEDGER):</span>
+                    <div class="odometer-drum-wheel-box" id="block-odometer-box" aria-label="Block Number Counter">
+                      <div class="odometer-digit" data-digit="0"><span>0</span></div>
+                      <div class="odometer-digit" data-digit="5"><span>5</span></div>
+                      <div class="odometer-digit" data-digit="8"><span>8</span></div>
+                      <div class="odometer-digit" data-digit="2"><span>2</span></div>
+                      <div class="odometer-digit" data-digit="4"><span>4</span></div>
+                      <div class="odometer-digit" data-digit="9"><span>9</span></div>
+                      <div class="odometer-digit" data-digit="1"><span>1</span></div>
+                      <div class="odometer-digit" data-digit="2"><span>2</span></div>
+                    </div>
+                  </div>
+
+                  <!-- Gas Ticker & Transaction Hash -->
+                  <div class="receipt-field-stack">
+                    <div class="receipt-row">
+                      <span class="r-key">GAS CONSUMPTION:</span>
+                      <span class="r-val highlight" id="receipt-gas">68,420 GWEI</span>
+                    </div>
+                    <div class="receipt-row">
+                      <span class="r-key">NETWORK STATUS:</span>
+                      <span class="r-val text-green" id="receipt-status-badge">CONFIRMED (FINALITY 1/1)</span>
+                    </div>
+                    <div class="receipt-row tx-row">
+                      <span class="r-key">TRANSACTION HASH:</span>
+                      <a href="https://sepolia.etherscan.io" target="_blank" rel="noopener noreferrer" class="r-val-link" id="receipt-tx-hash">
+                        0x7f9a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a
+                      </a>
+                    </div>
+                  </div>
+
+                  <!-- External Explorer Trigger -->
+                  <div class="receipt-action-row">
+                    <a href="https://sepolia.etherscan.io" target="_blank" rel="noopener noreferrer" id="btn-etherscan" class="btn-receipt-etherscan">
+                      <span class="eth-diamond">⟠</span>
+                      <span>INSPECT ON SEPOLIA ETHERSCAN ↗</span>
+                    </a>
+                  </div>
+
+                  <!-- Interactive Re-Verify Archive Button -->
+                  <div class="receipt-reverify-block">
+                    <button type="button" id="btn-reverify" class="btn-mechanical-reverify" disabled>
+                      <div class="beveled-reverify-rim">
+                        <span class="rev-icon">✛</span>
+                        <span class="rev-label">[ RE-VERIFY RECORD INTEGRITY ]</span>
+                      </div>
+                    </button>
+                    <div class="reverify-output-badge" id="verification-badge">
+                      STATUS: VERIFY_FACE_DATA() READY
+                    </div>
+                  </div>
+
+                  <!-- Heavy Red Ink Rubber Stamp Animation Element -->
+                  <div class="rubber-stamp stamp-notarized-heavy" id="rubber-stamp-blockchain" aria-label="On-Chain Verified Stamp">
+                    <div class="stamp-border-frame">
+                      <div class="stamp-line-1">VERIFIED ON-CHAIN</div>
+                      <div class="stamp-line-2">// SEPOLIA //</div>
+                      <div class="stamp-line-3">CONTRACT 0x3f5CEb96030ca5cc35e07Fdf...</div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </div> <!-- /dossier-paper-sheet -->
+    </div> <!-- /manila-dossier-folder -->
+  </main>
+
+  <!-- ========================================================================
+       5. FOOTER: TELEPRINTER / GREEN-PHOSPHOR CRT MINI CONSOLE
+       ======================================================================== -->
+  <footer id="teleprinter-footer" class="teleprinter-console-footer">
+    <div class="teleprinter-bezel">
+      
+      <!-- Teleprinter Masthead -->
+      <div class="teleprinter-control-bar">
+        <div class="bar-left">
+          <span class="pilot-lamp sm lamp-green" id="teleprinter-lamp"></span>
+          <span class="teleprinter-title">TELEPRINTER TAPE RECORDER // PIPELINE STDOUT STREAM</span>
+          <span class="teleprinter-counter" id="log-line-counter">0 DISPATCHES</span>
+        </div>
+        <div class="bar-right">
+          <button type="button" id="btn-clear-logs" class="btn-console-key">CLEAR TAPE</button>
+          <button type="button" id="btn-toggle-terminal" class="btn-console-key" aria-expanded="true">
+            <span id="term-toggle-label">COLLAPSE TAPE ▼</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Sunken CRT Green-Phosphor Terminal Screen -->
+      <div class="teleprinter-screen-viewport" id="terminal-body">
+        <div class="screen-scanlines" aria-hidden="true"></div>
+        <div class="teleprinter-output-lines" id="terminal-lines" role="log" aria-live="polite">
+          <div class="teleprinter-line sys">
+            <span class="t-stamp">[15:42:00]</span>
+            <span class="t-msg">BUREAU FORENSIC CORE INITIALIZED // ETHEREUM SEPOLIA RPC LISTENING ON PORT 3000...</span>
+          </div>
+          <div class="teleprinter-line info">
+            <span class="t-stamp">[15:42:01]</span>
+            <span class="t-msg">Awaiting face portrait specimen ingestion via 35mm slide tray or manual evidence drop.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Application Client Controller -->
+  <script src="/static/js/app.js" defer></script>
+</body>
+</html>

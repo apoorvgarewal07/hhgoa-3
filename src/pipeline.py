@@ -6,6 +6,10 @@ Connects: Face Detection & 128-D Encoding -> SerpAPI Reverse Search -> Ethereum 
 """
 import os
 import sys
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 import json
 from pathlib import Path
 from dotenv import load_dotenv
@@ -77,10 +81,19 @@ class FaceBlockchainPipeline:
         # Save encoding to results
         self.face_detector.save_encoding(primary_encoding, "face_encoding.json")
 
+        # Pure face biometric identification (zero reliance on image filename)
+        recognized_name, min_dist, confidence = self.face_detector.identify_face(primary_encoding)
+        if recognized_name:
+            print(f"👤 Face Identified Biometrically: {recognized_name} (Confidence: {confidence}%, Dist: {min_dist:.4f})")
+        else:
+            print("👤 Face Biometrics: Unindexed/Novel Subject Profile")
+
         self.results["face_detection"] = {
             "faces_found": len(face_locations),
             "encoding_vector_size": len(primary_encoding) if primary_encoding else 0,
             "face_locations": [list(loc) for loc in face_locations],
+            "recognized_subject": recognized_name,
+            "biometric_distance": min_dist,
             "status": "success"
         }
 
@@ -90,7 +103,7 @@ class FaceBlockchainPipeline:
         print("\n🔍 STEP 2: Reverse Image Search & Social Media Detection")
         print("-" * 40)
 
-        search_results = self.web_searcher.reverse_image_search(image_path)
+        search_results = self.web_searcher.reverse_image_search(image_path, recognized_name=recognized_name)
         if not search_results or search_results.get("total", 0) == 0:
             print("❌ No matching posts found on web/social media")
             return None

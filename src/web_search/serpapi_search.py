@@ -1,4 +1,9 @@
 import os
+import sys
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 import json
 import base64
 import hashlib
@@ -27,9 +32,10 @@ class SerpAPISearcher:
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         self.results = {}
 
-    def reverse_image_search(self, image_path, use_cache=False):
+    def reverse_image_search(self, image_path, use_cache=False, recognized_name=None):
         """
         Perform reverse image search on local image file using SerpAPI.
+        Takes optional `recognized_name` detected directly from facial biometric vectors.
         """
         print(f"\n🔍 Starting reverse image search for: {image_path}")
 
@@ -54,8 +60,8 @@ class SerpAPISearcher:
             except Exception:
                 pass
 
-        # Perform live SerpAPI search
-        search_data = self._perform_live_serpapi_search(image_path, img_bytes)
+        # Perform live SerpAPI search with biometric identity
+        search_data = self._perform_live_serpapi_search(image_path, img_bytes, recognized_name=recognized_name)
 
         self.results = search_data
         parsed = self._parse_results(search_data)
@@ -63,11 +69,11 @@ class SerpAPISearcher:
         self.save_results(f"search_cache_{img_hash}.json")
         return parsed
 
-    def _perform_live_serpapi_search(self, image_path, img_bytes):
+    def _perform_live_serpapi_search(self, image_path, img_bytes, recognized_name=None):
         """
         Executes search across Google Reverse Image, Google Lens, and Google Images on SerpAPI.
+        Prioritizes identity inferred from the 128-D facial embedding over file name.
         """
-        image_name = Path(image_path).stem.replace("_", " ").replace("-", " ")
         combined_data = {
             "search_metadata": {"status": "Success"},
             "inline_images": [],
@@ -80,12 +86,17 @@ class SerpAPISearcher:
             print("⚠ No valid SerpAPI key provided. Using fallback search.")
             return combined_data
 
-        # Search Strategy 1: Google Images search on SerpAPI
-        print("📡 Querying SerpAPI Google Search for exact social matches...")
-        try:
-            # Query targeted queries for known or discovered subjects
+        # Determine subject query: Biometrics first!
+        if recognized_name and recognized_name.strip():
+            query = recognized_name.strip()
+            print(f"👤 Face Biometrics Inferred Subject: '{query}'")
+        else:
+            image_name = Path(image_path).stem.replace("_", " ").replace("-", " ")
             query = image_name if image_name not in ["sample", "test", "input face", "input"] else "Mia Khalifa"
-            
+
+        # Search Strategy 1: Google Images search on SerpAPI
+        print(f"📡 Querying SerpAPI Google Search for exact social matches for '{query}'...")
+        try:
             # 1. Search Google Images for direct social posts
             resp_images = requests.get(
                 "https://serpapi.com/search.json",
